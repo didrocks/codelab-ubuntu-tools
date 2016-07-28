@@ -28,6 +28,7 @@ will be understood by the renderer:
 - Feedback Link: A link to send users to if they wish to leave feedback on the
   codelab.
 - Analytics Account: A Google Analytics ID to include with all codelab pages.
+- Difficulty: An integer measuring the difficulty of this codelab.
 
 ## Title
 

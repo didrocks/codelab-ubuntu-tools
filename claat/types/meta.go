@@ -24,17 +24,18 @@ import (
 
 // Meta contains a single codelab metadata.
 type Meta struct {
-	ID         string        `json:"id"`                 // ID is also part of codelab URL
-	Duration   int           `json:"duration"`           // Codelab duration in minutes
-	Title      string        `json:"title"`              // Codelab title
-	Author     string        `json:"author,omitempty"`   // Arbitrary authorship text
-	Summary    string        `json:"summary"`            // Short summary
-	Theme      string        `json:"theme"`              // Usually first item of Categories
-	Status     *LegacyStatus `json:"status"`             // Draft, Published, Hidden, etc.
-	Categories []string      `json:"category"`           // Categories from the meta table
-	Tags       []string      `json:"tags"`               // All environments supported by the codelab
-	Feedback   string        `json:"feedback,omitempty"` // Issues and bugs are sent here
-	GA         string        `json:"ga,omitempty"`       // Codelab-specific GA tracking ID
+	ID         string        `json:"id"`                   // ID is also part of codelab URL
+	Duration   int           `json:"duration"`             // Codelab duration in minutes
+	Title      string        `json:"title"`                // Codelab title
+	Author     string        `json:"author,omitempty"`     // Arbitrary authorship text
+	Summary    string        `json:"summary"`              // Short summary
+	Theme      string        `json:"theme"`                // Usually first item of Categories
+	Status     *LegacyStatus `json:"status"`               // Draft, Published, Hidden, etc.
+	Categories []string      `json:"category"`             // Categories from the meta table
+	Tags       []string      `json:"tags"`                 // All environments supported by the codelab
+	Feedback   string        `json:"feedback,omitempty"`   // Issues and bugs are sent here
+	GA         string        `json:"ga,omitempty"`         // Codelab-specific GA tracking ID
+	Difficulty int           `json:"difficulty,omitempty"` // Codelab-specific difficulty
 
 	URL string `json:"url"` // Legacy ID; TODO: remove
 }

@@ -397,6 +397,12 @@ func metaTable(ds *docState) {
 			ds.clab.Feedback = s
 		case "analytics", "analytics account", "google analytics":
 			ds.clab.GA = s
+		case "difficulty":
+			var err error
+			ds.clab.Difficulty, err = strconv.Atoi(s)
+			if err != nil {
+				fmt.Errorf("invalid difficulty metadata format: %v", s)
+			}
 		}
 	}
 	if len(ds.clab.Categories) > 0 {

@@ -185,6 +185,7 @@ func TestAddMetadataToCodelab(t *testing.T) {
 				"status":            "draft",
 				"feedback link":     "https://www.google.com",
 				"analytics account": "12345",
+				"difficulty":        "3",
 			},
 			types.Codelab{
 				Meta: types.Meta{
@@ -196,6 +197,7 @@ func TestAddMetadataToCodelab(t *testing.T) {
 					Status:     &tempStatus,
 					Feedback:   "https://www.google.com",
 					GA:         "12345",
+					Difficulty: 3,
 				},
 			},
 		},
