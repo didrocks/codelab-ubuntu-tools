@@ -43,6 +43,7 @@ const (
 	metaStatus           = "status"
 	metaFeedbackLink     = "feedback link"
 	metaAnalyticsAccount = "analytics account"
+	metaDifficulty       = "difficulty"
 )
 
 var metadataRegexp = regexp.MustCompile(`(.+?):(.+)`)
@@ -506,6 +507,14 @@ func addMetadataToCodelab(m map[string]string, c *types.Codelab) {
 		case metaAnalyticsAccount:
 			// Directly assign the GA id to the codelab field.
 			c.GA = v
+			break
+		case metaDifficulty:
+			// Directly assign the difficulty as int to the codelab field.
+			var err error
+			c.Difficulty, err = strconv.Atoi(v)
+			if err != nil {
+				fmt.Errorf("invalid difficulty metadata format: %v", v)
+			}
 			break
 		default:
 			break
