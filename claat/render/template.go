@@ -23,7 +23,7 @@ import (
 	"sort"
 	textTemplate "text/template"
 
-	"github.com/googlecodelabs/tools/claat/types"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/types"
 )
 
 // Context is a template context during execution.

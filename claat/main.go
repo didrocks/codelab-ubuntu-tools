@@ -25,8 +25,8 @@ import (
 	"time"
 
 	// allow parsers to register themselves
-	_ "github.com/googlecodelabs/tools/claat/parser/gdoc"
-	_ "github.com/googlecodelabs/tools/claat/parser/md"
+	_ "github.com/didrocks/codelab-ubuntu-tools/claat/parser/gdoc"
+	_ "github.com/didrocks/codelab-ubuntu-tools/claat/parser/md"
 )
 
 var (

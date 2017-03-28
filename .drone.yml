@@ -1,6 +1,6 @@
 # Note: if you modify this file, don't forget to update
 # checksum in .drone.sec with:
-# drone secure --repo googlecodelabs/tools --checksum
+# drone secure --repo didrocks/codelab-ubuntu-tools --checksum
 clone:
   depth: 1
 build:
@@ -14,7 +14,7 @@ build:
 publish:
   gcs:
     when:
-      repo: googlecodelabs/tools
+      repo: didrocks/codelab-ubuntu-tools
       branch: master
     auth_key: >
       $$SERVICE_ACCOUNT_KEY

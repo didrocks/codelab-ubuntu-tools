@@ -29,8 +29,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/googlecodelabs/tools/claat/parser"
-	"github.com/googlecodelabs/tools/claat/types"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/parser"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/types"
 )
 
 const (

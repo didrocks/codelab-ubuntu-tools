@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/googlecodelabs/tools/claat/types"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/types"
 
 	"golang.org/x/net/html"
 )

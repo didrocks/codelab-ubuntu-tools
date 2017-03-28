@@ -22,8 +22,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/googlecodelabs/tools/claat/render"
-	"github.com/googlecodelabs/tools/claat/types"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/render"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/types"
 )
 
 type testTransport struct {

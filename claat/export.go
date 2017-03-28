@@ -23,8 +23,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/googlecodelabs/tools/claat/render"
-	"github.com/googlecodelabs/tools/claat/types"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/render"
+	"github.com/didrocks/codelab-ubuntu-tools/claat/types"
 )
 
 // cmdExport is the "claat export ..." subcommand.
