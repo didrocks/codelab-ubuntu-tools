@@ -17,6 +17,7 @@
 package md
 
 import (
+	"bufio"
 	"bytes"
 	"errors"
 	"fmt"
@@ -192,18 +193,26 @@ func parseMetadata(ps *parserState) error {
 	m := map[string]string{}
 	// Iterate over the metadata elements, constructing a map of the metadata.
 	for ; ps.t.Type != html.ErrorToken && ps.t.DataAtom != atom.H1; ps.advance() {
-		if ps.t.Type == html.StartTagToken && ps.t.DataAtom == atom.P {
-			// Advance to text.
-			ps.advance()
-			// Split the keys from values.
-			s := metadataRegexp.FindStringSubmatch(ps.t.Data)
+
+		// Advance to text.
+		ps.advance()
+		// Split the keys from values.
+		d := ps.t.Data
+		scanner := bufio.NewScanner(strings.NewReader(d))
+		for scanner.Scan() {
+			s := metadataRegexp.FindStringSubmatch(scanner.Text())
 			if len(s) != 3 {
-				return fmt.Errorf("invalid metadata format: %v", s)
+				continue
 			}
+
 			k := strings.ToLower(strings.TrimSpace(s[1]))
 			v := strings.TrimSpace(s[2])
 			m[k] = v
+
 		}
+	}
+	if _, ok := m["id"]; !ok {
+		return fmt.Errorf("invalid metadata format, missing at least id: %v", m)
 	}
 	addMetadataToCodelab(m, ps.c)
 	return nil
