@@ -720,7 +720,6 @@ func list(ds *docState) types.Node {
 		typ = "1"
 	}
 	start, _ := strconv.Atoi(nodeAttr(ds.cur, "start"))
-	fmt.Println(typ)
 	list := types.NewItemsListNode(typ, start)
 	for hn := findAtom(ds.cur, atom.Li); hn != nil; hn = hn.NextSibling {
 		if hn.DataAtom != atom.Li {
@@ -861,6 +860,10 @@ func text(ds *docState) types.Node {
 	}
 
 	v := stringifyNode(ds.cur, false)
+	// we have \n nodes in end of lines from the blackfriday parser. We don't want them.
+	if strings.TrimSpace(v) == "" {
+		return nil
+	}
 	n := types.NewTextNode(v)
 	n.Bold = bold
 	n.Italic = italic
