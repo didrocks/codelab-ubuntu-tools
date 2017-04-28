@@ -375,6 +375,11 @@ func parseSubtree(ds *docState) []types.Node {
 //
 // The flag argument modifies default behavour of the func.
 func parseNode(ds *docState) (types.Node, bool) {
+	// we have \n end of line nodes after each tag from the blackfriday parser.
+	// We just want to ignore them as it makes previous node detection fuzzy.
+	if ds.cur.Type == html.TextNode && strings.TrimSpace(ds.cur.Data) == "" {
+		return nil, true
+	}
 	switch {
 	case isMeta(ds.cur):
 		metaStep(ds)
@@ -863,10 +868,6 @@ func text(ds *docState) types.Node {
 	}
 
 	v := stringifyNode(ds.cur, false)
-	// we have \n nodes in end of lines from the blackfriday parser. We don't want them.
-	if strings.TrimSpace(v) == "" {
-		return nil
-	}
 	n := types.NewTextNode(v)
 	n.Bold = bold
 	n.Italic = italic
