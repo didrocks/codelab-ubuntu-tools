@@ -213,7 +213,6 @@ func parseMarkup(markup *html.Node) (*types.Codelab, error) {
 	ds.clab.Tags = unique(ds.clab.Tags)
 	sort.Strings(ds.clab.Tags)
 	ds.clab.Duration = int(ds.totdur.Minutes())
-	fmt.Printf("%+v", ds.clab)
 	return ds.clab, nil
 }
 
