@@ -61,8 +61,7 @@ type resource struct {
 // and modified timestamp fields.
 type codelab struct {
 	*types.Codelab
-	typ srcType   //  source type
-	mod time.Time // last modified timestamp
+	typ srcType //  source type
 }
 
 // slurpCodelab retrieves and parses codelab source.
@@ -108,7 +107,6 @@ func slurpCodelab(src string) (*codelab, error) {
 	v := &codelab{
 		Codelab: clab,
 		typ:     res.typ,
-		mod:     res.mod,
 	}
 	return v, nil
 }

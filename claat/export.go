@@ -78,15 +78,13 @@ func exportCodelab(src string) (*types.Meta, error) {
 	}
 
 	// codelab export context
-	lastmod := types.ContextTime(clab.mod)
 	meta := &clab.Meta
 	ctx := &types.Context{
-		Source:  src,
-		Env:     *expenv,
-		Format:  *tmplout,
-		Prefix:  *prefix,
-		MainGA:  *globalGA,
-		Updated: &lastmod,
+		Source: src,
+		Env:    *expenv,
+		Format: *tmplout,
+		Prefix: *prefix,
+		MainGA: *globalGA,
 	}
 
 	dir := *output // output dir or stdout

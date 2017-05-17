@@ -403,6 +403,12 @@ func metaTable(ds *docState) {
 			if err != nil {
 				fmt.Errorf("invalid difficulty metadata format: %v", s)
 			}
+		case "published":
+			t, err := time.Parse(time.RFC3339, s+"T00:00:01Z")
+			if err != nil {
+				fmt.Printf("invalid time metadata format: %v. Should be like 2017-04-21", err)
+			}
+			ds.clab.Published = types.ContextTime(t)
 		}
 	}
 	if len(ds.clab.Categories) > 0 {

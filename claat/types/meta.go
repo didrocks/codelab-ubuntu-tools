@@ -36,6 +36,7 @@ type Meta struct {
 	Feedback   string        `json:"feedback,omitempty"`   // Issues and bugs are sent here
 	GA         string        `json:"ga,omitempty"`         // Codelab-specific GA tracking ID
 	Difficulty int           `json:"difficulty,omitempty"` // Codelab-specific difficulty
+	Published  ContextTime   `json:"published,omitempty"`  // Last major publication timestamp
 
 	URL string `json:"url"` // Legacy ID; TODO: remove
 }
@@ -43,12 +44,11 @@ type Meta struct {
 // Context is an export context.
 // It is defined in this package so that it can be used by both cli and a server.
 type Context struct {
-	Env     string       `json:"environment"`       // Current export environment
-	Source  string       `json:"source"`            // Codelab source doc
-	Format  string       `json:"format"`            // Output format, e.g. "html"
-	Prefix  string       `json:"prefix,omitempty"`  // Assets URL prefix for HTML-based formats
-	MainGA  string       `json:"mainga,omitempty"`  // Global Google Analytics ID
-	Updated *ContextTime `json:"updated,omitempty"` // Last update timestamp
+	Env    string `json:"environment"`      // Current export environment
+	Source string `json:"source"`           // Codelab source doc
+	Format string `json:"format"`           // Output format, e.g. "html"
+	Prefix string `json:"prefix,omitempty"` // Assets URL prefix for HTML-based formats
+	MainGA string `json:"mainga,omitempty"` // Global Google Analytics ID
 }
 
 // ContextMeta is a composition of export context and meta data.

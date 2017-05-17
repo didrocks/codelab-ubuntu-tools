@@ -90,8 +90,6 @@ func updateCodelab(dir string) (*types.Meta, error) {
 	if err != nil {
 		return nil, err
 	}
-	updated := types.ContextTime(clab.mod)
-	meta.Context.Updated = &updated
 
 	basedir := filepath.Join(dir, "..")
 	newdir := codelabDir(basedir, &clab.Meta)

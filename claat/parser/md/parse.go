@@ -49,6 +49,7 @@ const (
 	metaAnalyticsAccount = "analytics account"
 	metaTags             = "tags"
 	metaDifficulty       = "difficulty"
+	metaPublished        = "published"
 )
 
 const (
@@ -395,6 +396,13 @@ func addMetadataToCodelab(m map[string]string, c *types.Codelab) error {
 			if err != nil {
 				return fmt.Errorf("invalid difficulty metadata format: %v", v)
 			}
+			break
+		case metaPublished:
+			t, err := time.Parse(time.RFC3339, v+"T00:00:01Z")
+			if err != nil {
+				return fmt.Errorf("invalid time metadata format: %v. Should be like 2017-04-21", err)
+			}
+			c.Published = types.ContextTime(t)
 			break
 		default:
 			break
