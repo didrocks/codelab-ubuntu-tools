@@ -401,7 +401,7 @@ func metaTable(ds *docState) {
 			var err error
 			ds.clab.Difficulty, err = strconv.Atoi(s)
 			if err != nil {
-				fmt.Errorf("invalid difficulty metadata format: %v", s)
+				fmt.Printf("invalid difficulty metadata format: %v", s)
 			}
 		case "published":
 			t, err := time.Parse(time.RFC3339, s+"T00:00:01Z")
