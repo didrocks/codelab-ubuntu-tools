@@ -50,6 +50,7 @@ const (
 	metaTags             = "tags"
 	metaDifficulty       = "difficulty"
 	metaPublished        = "published"
+	metaImage            = "image"
 )
 
 const (
@@ -403,6 +404,10 @@ func addMetadataToCodelab(m map[string]string, c *types.Codelab) error {
 				return fmt.Errorf("invalid time metadata format: %v. Should be like 2017-04-21", err)
 			}
 			c.Published = types.ContextTime(t)
+			break
+		case metaImage:
+			// Directly assign the image link to the codelab field.
+			c.Image = v
 			break
 		default:
 			break
