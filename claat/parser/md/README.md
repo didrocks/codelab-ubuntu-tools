@@ -29,6 +29,7 @@ will be understood by the renderer:
   codelab.
 - Analytics Account: A Google Analytics ID to include with all codelab pages.
 - Difficulty: An integer measuring the difficulty of this codelab.
+- Image: An image link to act as a featured image for the codelab.
 
 ## Title
 
@@ -101,4 +102,3 @@ will apply special button-esque styling to any link that begins with the word
 ```
   [Download SDK](https://www.google.com)
 ```
-

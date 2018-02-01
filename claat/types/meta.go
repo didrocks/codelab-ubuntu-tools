@@ -37,6 +37,7 @@ type Meta struct {
 	GA         string        `json:"ga,omitempty"`         // Codelab-specific GA tracking ID
 	Difficulty int           `json:"difficulty,omitempty"` // Codelab-specific difficulty
 	Published  ContextTime   `json:"published,omitempty"`  // Last major publication timestamp
+	Image      string        `json:"image,omitempty"`      // Featured image link
 
 	URL string `json:"url"` // Legacy ID; TODO: remove
 }
