@@ -640,7 +640,18 @@ func image(ds *docState) types.Node {
 	if s == "" {
 		return nil
 	}
+
 	n := types.NewImageNode(s)
+	alt := nodeAttr(ds.cur, "alt")
+	if alt != "" {
+		n.Alt = alt
+	}
+
+	title := nodeAttr(ds.cur, "title")
+	if title != "" {
+		m.Title = title
+	}
+
 	n.MutateBlock(findBlockParent(ds.cur))
 	return n
 }

@@ -1,4 +1,4 @@
-// Copyright 2016 Google Inc. All Rights Reserved.
+// Copyright 2018 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,6 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// The claat command generates one or more codelabs from "source" documents,
+// specified as either Google Doc IDs or local markdown files.
+// The command also allows one to preview generated codelabs from local drive
+// using "claat serve".
+// See more details at https://github.com/googlecodelabs/tools.
 package main
 
 import (
@@ -37,6 +42,7 @@ var (
 	prefix    = flag.String("prefix", "../../", "URL prefix for html format")
 	globalGA  = flag.String("ga", "UA-49880327-14", "global Google Analytics account")
 	extra     = flag.String("extra", "", "Additional arguments to pass to format templates. JSON object of string,string key values.")
+	addr      = flag.String("addr", "localhost:9090", "hostname and port to bind web server to")
 
 	version string // set by linker -X
 )
@@ -59,6 +65,7 @@ var (
 	// commands contains all valid subcommands, e.g. "claat export".
 	commands = map[string]func(){
 		"export":  cmdExport,
+		"serve":   cmdServe,
 		"update":  cmdUpdate,
 		"help":    usage,
 		"version": func() { fmt.Println(version) },
@@ -136,9 +143,9 @@ func usage() {
 	flag.PrintDefaults()
 }
 
-const usageText = `Usage: claat <cmd> [export flags] src [src ...]
+const usageText = `Usage: claat <cmd> [options] src [src ...]
 
-Available commands are: export, update, version.
+Available commands are: export, serve, update, version.
 
 ## Export command
 
@@ -150,6 +157,10 @@ The following formats are built-in:
 - html (Polymer-based app)
 - md (Markdown)
 - offline (plain HTML markup for offline consumption)
+
+Note that the built-in templates of the formats are not guaranteed to be stable.
+They can be found in https://github.com/googlecodelabs/tools/tree/master/claat/render.
+Please avoid using default templates in production. Use your own copies.
 
 To use a custom format, specify a local file path to a Go template file.
 More info on Go templates: https://golang.org/pkg/text/template/.
@@ -168,6 +179,17 @@ stdout. In this case images and metadata are not exported.
 When writing to a directory, existing files will be overwritten.
 
 The program exits with non-zero code if at least one src could not be exported.
+
+## Serve command
+
+Serve provides a simple web server for viewing exported codelabs.
+It takes no arguments and presents the current directory contents.
+Clicking on a directory representing an exported codelab will load
+all the required dependencies and render the generated codelab as
+it would appear in production.
+
+The serve command takes a -addr host:port option, to specify the
+desired hostname or IP address and port number to bind to.
 
 ## Update command
 
